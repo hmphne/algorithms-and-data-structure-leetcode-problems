@@ -44,15 +44,20 @@ var buildLinkedList = function (arr) {
 // };
 
 var reverseList = function (head) {
+  let prev = null;
   let curr = head;
-  let reverse = null;
-  while (curr !== null) {
-    let forward = curr.next;
-    curr.next = reverse;
-    reverse = curr;
-    curr = forward;
+
+  if (!curr) return curr;
+
+  while (curr.next !== null) {
+    let next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
   }
-  return reverse;
+  console.log(curr, prev);
+  curr.next = prev;
+  return curr;
 };
 
 const head = buildLinkedList([1, 2, 3, 4, 5]);
